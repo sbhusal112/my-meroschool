@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mero School - मेरो स्कूल</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <div class="language-indicator">
+            <i class="fas fa-globe"></i>
+        </div>
+        <button class="btn btn-sm btn-outline-primary active" onclick="changeLanguage('en')" type="button">
+            <i class="fas fa-globe"></i> EN
+        </button>
+        <button class="btn btn-sm btn-outline-primary" onclick="changeLanguage('np')" type="button">
+            <i class="fas fa-globe"></i> ने
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showSection('home')">
+                <i class="fas fa-graduation-cap me-2"></i>
+                <span data-en="Mero School" data-np="मेरो स्कूल">Mero School</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('home')">
+                            <i class="fas fa-home me-1"></i>
+                            <span data-en="Home" data-np="गृह">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('service')">
+                            <i class="fas fa-cogs me-1"></i>
+                            <span data-en="Services" data-np="सेवाहरू">Services</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('dashboard')">
+                            <i class="fas fa-tachometer-alt me-1"></i>
+                            <span data-en="Dashboard" data-np="ड्यासबोर्ड">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('calculator')">
+                            <i class="fas fa-calculator me-1"></i>
+                            <span data-en="Calculator" data-np="क्यालकुलेटर">Calculator</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('videoChat')">
+                            <i class="fas fa-video me-1"></i>
+                            <span data-en="Video Chat" data-np="भिडियो च्याट">Video Chat</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('aiAssistant')">
+                            <i class="fas fa-robot me-1"></i>
+                            <span data-en="AI Assistant" data-np="एआई सहायक">AI Assistant</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>
+                            <span id="userDisplay" data-en="Account" data-np="खाता">Account</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User info when logged in -->
+                            <li id="userInfoSection" style="display: none;">
+                                <div class="dropdown-item-text">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div id="userAvatar" style="display: none;">
+                                            <img src="" alt="User Avatar" class="rounded-circle me-2" width="32" height="32">
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold" id="userName"></div>
+                                            <small class="text-muted" id="userEmail" style="display: none;"></small>
+                                            <small class="text-muted" id="userProvider" style="display: none;"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="userInfoSection" style="display: none;"><hr class="dropdown-divider"></li>
+                            <!-- Login/Signup when not logged in -->
+                            <li id="authSection">
+                                <a class="dropdown-item" href="#" onclick="showSection('login')">
+                                    <i class="fas fa-sign-in-alt me-2"></i>
+                                    <span data-en="Login" data-np="लगइन">Login</span>
+                                </a>
+                            </li>
+                            <li id="authSection">
+                                <a class="dropdown-item" href="#" onclick="showSection('signup')">
+                                    <i class="fas fa-user-plus me-2"></i>
+                                    <span data-en="Sign Up" data-np="साइनअप">Sign Up</span>
+                                </a>
+                            </li>
+                            <!-- User actions when logged in -->
+                            <li id="userActionsSection" style="display: none;">
+                                <a class="dropdown-item" href="#" onclick="showUserProfile()">
+                                    <i class="fas fa-user-circle me-2"></i>
+                                    <span data-en="Profile" data-np="प्रोफाइल">Profile</span>
+                                </a>
+                            </li>
+                            <li id="userActionsSection" style="display: none;">
+                                <a class="dropdown-item" href="#" onclick="logout()">
+                                    <i class="fas fa-sign-out-alt me-2"></i>
+                                    <span data-en="Logout" data-np="लगआउट">Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h1 class="display-4 fw-bold mb-4">
+                                <span data-en="Welcome to Mero School" data-np="मेरो स्कूलमा स्वागत छ">Welcome to Mero School</span>
+                            </h1>
+                            <p class="lead mb-4">
+                                <span data-en="Start your educational journey here. Access materials and resources for classes 1 to 10." 
+                                      data-np="आफ्नो शिक्षा यात्रा यहाँ सुरु गर्नुहोस्। कक्षा १ देखि १० सम्मको सामग्री र स्रोतहरू।">
+                                    Start your educational journey here. Access materials and resources for classes 1 to 10.
+                                </span>
+                            </p>
+                            <div class="d-flex gap-3">
+                                <a href="#" onclick="showSection('signup')" class="btn btn-light btn-lg">
+                                    <i class="fas fa-user-plus me-2"></i>
+                                    <span data-en="Get Started" data-np="सुरु गर्नुहोस्">Get Started</span>
+                                </a>
+                                <a href="#" onclick="showSection('login')" class="btn btn-outline-light btn-lg">
+                                    <i class="fas fa-sign-in-alt me-2"></i>
+                                    <span data-en="Login" data-np="लगइन">Login</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <i class="fas fa-graduation-cap" style="font-size: 200px; opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="py-5">
+                <div class="container">
+                    <div class="row text-center mb-5">
+                        <div class="col-12">
+                            <h2 class="fw-bold">
+                                <span data-en="Our Features" data-np="हाम्रो विशेषताहरू">Our Features</span>
+                            </h2>
+                            <p class="lead text-muted">
+                                <span data-en="Digital resources to enhance your learning experience" 
+                                      data-np="आफ्नो शिक्षा अनुभवलाई बढाउनको लागि डिजिटल स्रोतहरू">
+                                    Digital resources to enhance your learning experience
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 text-center p-4">
+                                <div class="card-body">
+                                    <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">
+                                        <span data-en="Classes 1-10" data-np="कक्षा १-१०">Classes 1-10</span>
+                                    </h5>
+                                    <p class="card-text">
+                                        <span data-en="Organized content and resources for all classes" 
+                                              data-np="सबै कक्षाको लागि व्यवस्थित सामग्री र स्रोतहरू">
+                                            Organized content and resources for all classes
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card h-100 text-center p-4">
+                                <div class="card-body">
+                                    <i class="fas fa-upload fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">
+                                        <span data-en="File Upload" data-np="फाइल अपलोड">File Upload</span>
+                                    </h5>
+                                    <p class="card-text">
+                                        <span data-en="Upload photos, videos, text files, and PDFs" 
+                                              data-np="फोटो, भिडियो, पाठ र PDF फाइलहरू अपलोड गर्नुहोस्">
+                                            Upload photos, videos, text files, and PDFs
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card h-100 text-center p-4">
+                                <div class="card-body">
+                                    <i class="fas fa-calculator fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">
+                                        <span data-en="Calculator" data-np="क्यालकुलेटर">Calculator</span>
+                                    </h5>
+                                    <p class="card-text">
+                                        <span data-en="Do math with our built-in calculator" 
+                                              data-np="अन्तर्निहित क्यालकुलेटर सँग गणित गर्नुहोस्">
+                                            Do math with our built-in calculator
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login" class="section">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card shadow">
+                            <div class="card-body p-5">
+                                <div class="text-center mb-4">
+                                    <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+                                    <h2 class="fw-bold">
+                                        <span data-en="Login" data-np="लगइन">Login</span>
+                                    </h2>
+                                    <p class="text-muted">
+                                        <span data-en="Sign in to your account" data-np="आफ्नो खातामा लगइन गर्नुहोस्">Sign in to your account</span>
+                                    </p>
+                                </div>
+
+                                <form id="loginForm">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">
+                                            <i class="fas fa-user me-2"></i>
+                                            <span data-en="Username" data-np="प्रयोगकर्ता नाम">Username</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="username" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">
+                                            <i class="fas fa-lock me-2"></i>
+                                            <span data-en="Password" data-np="पासवर्ड">Password</span>
+                                        </label>
+                                        <input type="password" class="form-control" id="password" required>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-sign-in-alt me-2"></i>
+                                            <span data-en="Login" data-np="लगइन">Login</span>
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <!-- Social Login Divider -->
+                                <div class="text-center my-3">
+                                    <span class="text-muted">
+                                        <span data-en="or" data-np="वा">or</span>
+                                    </span>
+                                </div>
+
+                                <!-- Social Login Buttons -->
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-outline-danger" onclick="signInWithGoogle()">
+                                        <i class="fab fa-google me-2"></i>
+                                        <span data-en="Continue with Google" data-np="Google सँग जारी राख्नुहोस्">Continue with Google</span>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-dark" onclick="signInWithApple()">
+                                        <i class="fab fa-apple me-2"></i>
+                                        <span data-en="Continue with Apple" data-np="Apple सँग जारी राख्नुहोस्">Continue with Apple</span>
+                                    </button>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <div class="text-center">
+                                    <p class="mb-0">
+                                        <span data-en="Don't have an account?" data-np="खाता छैन?">Don't have an account?</span>
+                                        <a href="#" onclick="showSection('signup')" class="text-decoration-none">
+                                            <span data-en="Sign up" data-np="साइनअप">Sign up</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signup Section -->
+        <section id="signup" class="section">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5">
+                        <div class="card shadow">
+                            <div class="card-body p-5">
+                                <div class="text-center mb-4">
+                                    <i class="fas fa-user-plus fa-3x text-primary mb-3"></i>
+                                    <h2 class="fw-bold">
+                                        <span data-en="Sign Up" data-np="साइनअप">Sign Up</span>
+                                    </h2>
+                                    <p class="text-muted">
+                                        <span data-en="Create a new account" data-np="नयाँ खाता सिर्जना गर्नुहोस्">Create a new account</span>
+                                    </p>
+                                </div>
+
+                                <form id="signupForm">
+                                    <div class="mb-3">
+                                        <label for="signupUsername" class="form-label">
+                                            <i class="fas fa-user me-2"></i>
+                                            <span data-en="Username" data-np="प्रयोगकर्ता नाम">Username</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="signupUsername" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">
+                                            <i class="fas fa-envelope me-2"></i>
+                                            <span data-en="Email" data-np="इमेल">Email</span>
+                                        </label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="signupPassword" class="form-label">
+                                            <i class="fas fa-lock me-2"></i>
+                                            <span data-en="Password" data-np="पासवर्ड">Password</span>
+                                        </label>
+                                        <input type="password" class="form-control" id="signupPassword" required>
+                                        <div class="form-text">
+                                            <span data-en="Use at least 6 characters" data-np="कम्तिमा ६ अक्षरको पासवर्ड प्रयोग गर्नुहोस्">Use at least 6 characters</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-user-plus me-2"></i>
+                                            <span data-en="Create Account" data-np="खाता सिर्जना गर्नुहोस्">Create Account</span>
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <!-- Social Signup Divider -->
+                                <div class="text-center my-3">
+                                    <span class="text-muted">
+                                        <span data-en="or" data-np="वा">or</span>
+                                    </span>
+                                </div>
+
+                                <!-- Social Signup Buttons -->
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-outline-danger" onclick="signUpWithGoogle()">
+                                        <i class="fab fa-google me-2"></i>
+                                        <span data-en="Sign up with Google" data-np="Google सँग साइनअप गर्नुहोस्">Sign up with Google</span>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-dark" onclick="signUpWithApple()">
+                                        <i class="fab fa-apple me-2"></i>
+                                        <span data-en="Sign up with Apple" data-np="Apple सँग साइनअप गर्नुहोस्">Sign up with Apple</span>
+                                    </button>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <div class="text-center">
+                                    <p class="mb-0">
+                                        <span data-en="Already have an account?" data-np="पहिले नै खाता छ?">Already have an account?</span>
+                                        <a href="#" onclick="showSection('login')" class="text-decoration-none">
+                                            <span data-en="Login" data-np="लगइन">Login</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section">
+            <div class="container py-5">
+                <!-- Welcome Message -->
+                <div class="row mb-4" id="welcomeMessage">
+                    <div class="col-12">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body text-center py-4">
+                                <h3 class="mb-2">
+                                    <i class="fas fa-user-graduate me-2"></i>
+                                    <span data-en="Welcome to Virtual Classroom" data-np="भर्चुअल कक्षामा स्वागत छ">Welcome to Virtual Classroom</span>
+                                </h3>
+                                <p class="lead mb-0" id="welcomeStudentName">
+                                    <span data-en="Welcome, Student!" data-np="स्वागत छ, विद्यार्थी!">Welcome, Student!</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Section -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">
+                                    <i class="fas fa-search me-2"></i>
+                                    <span data-en="Search Materials" data-np="सामग्री खोज्नुहोस्">Search Materials</span>
+                                </h5>
+                                
+                                <!-- Search Bar -->
+                                <div class="row mb-3">
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="searchInput" 
+                                                   placeholder="Search for study materials, homework, subjects..." 
+                                                   onkeyup="performSearch()">
+                                            <button class="btn btn-primary" onclick="performSearch()">
+                                                <i class="fas fa-search me-2"></i>
+                                                <span data-en="Search" data-np="खोज्नुहोस्">Search</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-outline-secondary w-100" onclick="clearSearch()">
+                                            <i class="fas fa-times me-2"></i>
+                                            <span data-en="Clear" data-np="सफा गर्नुहोस्">Clear</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Search Filters -->
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label">
+                                            <i class="fas fa-filter me-2"></i>
+                                            <span data-en="Class" data-np="कक्षा">Class</span>
+                                        </label>
+                                        <select class="form-select" id="searchClassFilter" onchange="performSearch()">
+                                            <option value="">All Classes</option>
+                                            <option value="1">Class 1</option>
+                                            <option value="2">Class 2</option>
+                                            <option value="3">Class 3</option>
+                                            <option value="4">Class 4</option>
+                                            <option value="5">Class 5</option>
+                                            <option value="6">Class 6</option>
+                                            <option value="7">Class 7</option>
+                                            <option value="8">Class 8</option>
+                                            <option value="9">Class 9</option>
+                                            <option value="10">Class 10</option>
+                                            <option value="11">Class 11 (+2)</option>
+                                            <option value="12">Class 12 (+2)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">
+                                            <i class="fas fa-book me-2"></i>
+                                            <span data-en="Subject" data-np="विषय">Subject</span>
+                                        </label>
+                                        <select class="form-select" id="searchSubjectFilter" onchange="performSearch()">
+                                            <option value="">All Subjects</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">
+                                            <i class="fas fa-tag me-2"></i>
+                                            <span data-en="Type" data-np="प्रकार">Type</span>
+                                        </label>
+                                        <select class="form-select" id="searchTypeFilter" onchange="performSearch()">
+                                            <option value="">All Types</option>
+                                            <option value="lesson">Lesson</option>
+                                            <option value="exercise">Exercise</option>
+                                            <option value="quiz">Quiz</option>
+                                            <option value="note">Note</option>
+                                            <option value="homework">Homework</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">
+                                            <i class="fas fa-calendar me-2"></i>
+                                            <span data-en="Date" data-np="मिति">Date</span>
+                                        </label>
+                                        <select class="form-select" id="searchDateFilter" onchange="performSearch()">
+                                            <option value="">All Dates</option>
+                                            <option value="today">Today</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Search Results -->
+                                <div id="searchResults" style="display: none;">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h6 class="mb-0">
+                                            <i class="fas fa-list me-2"></i>
+                                            <span data-en="Search Results" data-np="खोज परिणामहरू">Search Results</span>
+                                            <span id="searchResultsCount" class="badge bg-primary ms-2">0</span>
+                                        </h6>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-outline-primary btn-sm" onclick="sortSearchResults('relevance')">
+                                                <i class="fas fa-star me-1"></i>
+                                                <span data-en="Relevance" data-np="प्रासंगिकता">Relevance</span>
+                                            </button>
+                                            <button class="btn btn-outline-primary btn-sm" onclick="sortSearchResults('date')">
+                                                <i class="fas fa-calendar me-1"></i>
+                                                <span data-en="Date" data-np="मिति">Date</span>
+                                            </button>
+                                            <button class="btn btn-outline-primary btn-sm" onclick="sortSearchResults('title')">
+                                                <i class="fas fa-sort-alpha-down me-1"></i>
+                                                <span data-en="Title" data-np="शीर्षक">Title</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="searchResultsList" class="row g-3">
+                                        <!-- Search results will be populated here -->
+                                    </div>
+                                </div>
+
+                                <!-- No Results Message -->
+                                <div id="noSearchResults" style="display: none;" class="text-center py-4">
+                                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                                    <h5 class="text-muted">
+                                        <span data-en="No results found" data-np="कुनै परिणाम फेला परेन">No results found</span>
+                                    </h5>
+                                    <p class="text-muted">
+                                        <span data-en="Try adjusting your search terms or filters" data-np="आफ्नो खोज शब्दहरू वा फिल्टरहरू समायोजन गर्नुहोस्">
+                                            Try adjusting your search terms or filters
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class Selection Section -->
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">
+                                    <i class="fas fa-graduation-cap me-2"></i>
+                                    <span data-en="Select Your Class" data-np="आफ्नो कक्षा छान्नुहोस्">Select Your Class</span>
+                                </h4>
+                                <p class="text-muted mb-4">
+                                    <span data-en="Choose your class to see the recommended subjects and curriculum" data-np="अनुशंसित विषयहरू र पाठ्यक्रम हेर्नको लागि आफ्नो कक्षा छान्नुहोस्">
+                                        Choose your class to see the recommended subjects and curriculum
+                                    </span>
+                                </p>
+                                
+                                <!-- Debug Test Button -->
+                                <div class="mb-3">
+                                    <button class="btn btn-warning btn-sm" onclick="testClassSelection()">
+                                        <i class="fas fa-bug me-2"></i>
+                                        Class Selection
+                                    </button>
+                                </div>
+                                
+                                <!-- Class Selection Dropdown -->
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <label for="classSelect" class="form-label fw-bold">
+                                            <i class="fas fa-graduation-cap me-2"></i>
+                                            <span data-en="Select Your Class" data-np="आफ्नो कक्षा छान्नुहोस्">Select Your Class</span>
+                                        </label>
+                                        <select class="form-select form-select-lg" id="classSelect" onchange="selectClassFromDropdown(this.value)">
+                                            <option value="">
+                                                <span data-en="Choose a class..." data-np="कक्षा छान्नुहोस्...">Choose a class...</span>
+                                            </option>
+                                            <option value="1">Class 1</option>
+                                            <option value="2">Class 2</option>
+                                            <option value="3">Class 3</option>
+                                            <option value="4">Class 4</option>
+                                            <option value="5">Class 5</option>
+                                            <option value="6">Class 6</option>
+                                            <option value="7">Class 7</option>
+                                            <option value="8">Class 8</option>
+                                            <option value="9">Class 9</option>
+                                            <option value="10">Class 10</option>
+                                            <option value="11">Class 11 (+2 Level)</option>
+                                            <option value="12">Class 12 (+2 Level)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button class="btn btn-primary btn-lg" onclick="viewSelectedClassSubjects()" id="viewSubjectsBtn" style="display: none;">
+                                            <i class="fas fa-book-open me-2"></i>
+                                            <span data-en="View Subjects" data-np="विषयहरू हेर्नुहोस्">View Subjects</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="row g-3" id="classSelectionContainer" style="display: none;">
+                                    <!-- Class selection buttons will be generated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected Class Info -->
+                <div class="row mb-4" id="selectedClassInfo" style="display: none;">
+                    <div class="col-12">
+                        <div class="alert alert-success">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="alert-heading">
+                                        <i class="fas fa-check-circle me-2"></i>
+                                        <span data-en="Selected Class" data-np="छानिएको कक्षा">Selected Class</span>: <span id="selectedClassNumber"></span>
+                                    </h5>
+                                    <p class="mb-0" id="selectedClassDescription">
+                                        <!-- Class description will be populated by JavaScript -->
+                                    </p>
+                                </div>
+                                <button class="btn btn-success btn-sm" onclick="viewSelectedClassSubjects()">
+                                    <i class="fas fa-book-open me-2"></i>
+                                    <span data-en="View Subjects" data-np="विषयहरू हेर्नुहोस्">View Subjects</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Classes Section -->
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="fw-bold mb-4">
+                            <i class="fas fa-book me-2"></i>
+                            <span data-en="Classes" data-np="कक्षाहरू">Classes</span>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="classesContainer">
+                    <!-- Classes will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Class Detail Section -->
+        <section id="classDetail" class="section">
+            <div class="container py-5">
+                <!-- Welcome Message -->
+                <div class="row mb-4" id="welcomeMessage">
+                    <div class="col-12">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body text-center py-4">
+                                <h3 class="mb-2">
+                                    <i class="fas fa-user-graduate me-2"></i>
+                                    <span data-en="Welcome to Class" data-np="कक्षामा स्वागत छ">Welcome to Class</span> <span id="welcomeClassNumber"></span>
+                                </h3>
+                                <p class="lead mb-0" id="welcomeStudentName">
+                                    <span data-en="Welcome, Student!" data-np="स्वागत छ, विद्यार्थी!">Welcome, Student!</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="fw-bold">
+                                <i class="fas fa-graduation-cap me-2"></i>
+                                <span data-en="Class" data-np="कक्षा">Class</span> <span id="currentClassNumber"></span>
+                            </h2>
+                            <button class="btn btn-outline-primary" onclick="showSection('dashboard')">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                <span data-en="Back to Classes" data-np="कक्षाहरूमा फिर्ता">Back to Classes</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compulsory Subjects Section -->
+                <div class="row mb-4" id="compulsorySubjectsHeader">
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            <h4 class="alert-heading">
+                                <i class="fas fa-star me-2"></i>
+                                <span data-en="Compulsory Subjects" data-np="अनिवार्य विषयहरू">Compulsory Subjects</span>
+                            </h4>
+                            <p class="mb-0" id="compulsorySubjectsDescription">
+                                <span data-en="These are the core subjects for your class level" data-np="यी तपाईंको कक्षा स्तरका मुख्य विषयहरू हुन्">
+                                    These are the core subjects for your class level
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subjects Section -->
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <h3 class="fw-bold mb-4">
+                            <i class="fas fa-book-open me-2"></i>
+                            <span data-en="Subjects" data-np="विषयहरू">Subjects</span>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="subjectsContainer">
+                    <!-- Subjects will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Subject Detail Section -->
+        <section id="subjectDetail" class="section">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="fw-bold">
+                                <i class="fas fa-book-open me-2"></i>
+                                <span data-en="Class" data-np="कक्षा">Class</span> <span id="subjectClassNumber"></span> - 
+                                <span id="currentSubjectName"></span>
+                            </h2>
+                            <button class="btn btn-outline-primary" onclick="showSection('classDetail')">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                <span data-en="Back to Subjects" data-np="विषयहरूमा फिर्ता">Back to Subjects</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subject Content Tabs -->
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="nav nav-tabs" id="subjectTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="study-tab" data-bs-toggle="tab" data-bs-target="#study" type="button" role="tab">
+                                    <i class="fas fa-book me-2"></i>
+                                    <span data-en="Study Materials" data-np="अध्ययन सामग्री">Study Materials</span>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="homework-tab" data-bs-toggle="tab" data-bs-target="#homework" type="button" role="tab">
+                                    <i class="fas fa-tasks me-2"></i>
+                                    <span data-en="Homework" data-np="गृहकार्य">Homework</span>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="files-tab" data-bs-toggle="tab" data-bs-target="#files" type="button" role="tab">
+                                    <i class="fas fa-file me-2"></i>
+                                    <span data-en="Files" data-np="फाइलहरू">Files</span>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="subjectTabContent">
+                            <!-- Study Materials Tab -->
+                            <div class="tab-pane fade show active" id="study" role="tabpanel">
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">
+                                                <i class="fas fa-book me-2"></i>
+                                                <span data-en="Study Materials" data-np="अध्ययन सामग्री">Study Materials</span>
+                                            </h5>
+                                            <button class="btn btn-primary btn-sm" onclick="addStudyMaterial()">
+                                                <i class="fas fa-plus me-2"></i>
+                                                <span data-en="Add Material" data-np="सामग्री थप्नुहोस्">Add Material</span>
+                                            </button>
+                                        </div>
+                                        <div id="studyMaterialsList">
+                                            <!-- Study materials will be loaded here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Homework Tab -->
+                            <div class="tab-pane fade" id="homework" role="tabpanel">
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">
+                                                <i class="fas fa-tasks me-2"></i>
+                                                <span data-en="Homework" data-np="गृहकार्य">Homework</span>
+                                            </h5>
+                                            <button class="btn btn-success btn-sm" onclick="addHomework()">
+                                                <i class="fas fa-plus me-2"></i>
+                                                <span data-en="Add Homework" data-np="गृहकार्य थप्नुहोस्">Add Homework</span>
+                                            </button>
+                                        </div>
+                                        <div id="homeworkList">
+                                            <!-- Homework will be loaded here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Files Tab -->
+                            <div class="tab-pane fade" id="files" role="tabpanel">
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">
+                                                <i class="fas fa-file me-2"></i>
+                                                <span data-en="Files" data-np="फाइलहरू">Files</span>
+                                            </h5>
+                                            <button class="btn btn-info btn-sm" onclick="uploadFile()">
+                                                <i class="fas fa-upload me-2"></i>
+                                                <span data-en="Upload File" data-np="फाइल अपलोड गर्नुहोस्">Upload File</span>
+                                            </button>
+                                        </div>
+                                        <div id="filesList">
+                                            <!-- Files will be loaded here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <!-- AI Media Generation Modals -->
+    <!-- Text to Video Modal -->
+    <div class="modal fade" id="aiVideoModal" tabindex="-1" aria-labelledby="aiVideoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title" id="aiVideoModalLabel">
+                        <i class="fas fa-video me-2"></i>
+                        <span data-en="AI Video Generation" data-np="एआई भिडियो सिर्जना">AI Video Generation</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="videoPrompt" class="form-label">
+                            <span data-en="Describe the video you want to create:" data-np="तपाईंले सिर्जना गर्न चाहनुभएको भिडियोको वर्णन गर्नुहोस्:">Describe the video you want to create:</span>
+                        </label>
+                        <textarea class="form-control" id="videoPrompt" rows="4" 
+                                  placeholder="Example: Create an educational video about photosynthesis showing plants growing and sunlight being converted to energy"
+                                  data-en-placeholder="Example: Create an educational video about photosynthesis showing plants growing and sunlight being converted to energy"
+                                  data-np-placeholder="उदाहरण: प्रकाशसंश्लेषणको बारेमा शैक्षिक भिडियो सिर्जना गर्नुहोस् जसमा बिरुवाहरू बढ्दै र सूर्यको प्रकाश ऊर्जामा रूपान्तरण हुँदै देखाइएको छ"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="videoDuration" class="form-label">
+                            <span data-en="Video Duration:" data-np="भिडियो अवधि:">Video Duration:</span>
+                        </label>
+                        <select class="form-select" id="videoDuration">
+                            <option value="15">15 seconds</option>
+                            <option value="30" selected>30 seconds</option>
+                            <option value="60">1 minute</option>
+                            <option value="120">2 minutes</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="videoStyle" class="form-label">
+                            <span data-en="Video Style:" data-np="भिडियो शैली:">Video Style:</span>
+                        </label>
+                        <select class="form-select" id="videoStyle">
+                            <option value="educational">Educational</option>
+                            <option value="animated">Animated</option>
+                            <option value="realistic">Realistic</option>
+                            <option value="cartoon">Cartoon</option>
+                            <option value="3d">3D</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-purple" onclick="startVideoGeneration()">
+                            <i class="fas fa-magic me-2"></i>
+                            <span data-en="Generate Video" data-np="भिडियो सिर्जना गर्नुहोस्">Generate Video</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text to Audio Modal -->
+    <div class="modal fade" id="aiAudioModal" tabindex="-1" aria-labelledby="aiAudioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title" id="aiAudioModalLabel">
+                        <i class="fas fa-volume-up me-2"></i>
+                        <span data-en="AI Audio Generation" data-np="एआई अडियो सिर्जना">AI Audio Generation</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="audioText" class="form-label">
+                            <span data-en="Text to convert to speech:" data-np="भाषणमा रूपान्तरण गर्ने पाठ:">Text to convert to speech:</span>
+                        </label>
+                        <textarea class="form-control" id="audioText" rows="6" 
+                                  placeholder="Enter the text you want to convert to audio..."
+                                  data-en-placeholder="Enter the text you want to convert to audio..."
+                                  data-np-placeholder="अडियोमा रूपान्तरण गर्न चाहनुभएको पाठ प्रविष्ट गर्नुहोस्..."></textarea>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="audioVoice" class="form-label">
+                                <span data-en="Voice:" data-np="आवाज:">Voice:</span>
+                            </label>
+                            <select class="form-select" id="audioVoice">
+                                <option value="male">Male</option>
+                                <option value="female" selected>Female</option>
+                                <option value="child">Child</option>
+                                <option value="elderly">Elderly</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="audioLanguage" class="form-label">
+                                <span data-en="Language:" data-np="भाषा:">Language:</span>
+                            </label>
+                            <select class="form-select" id="audioLanguage">
+                                <option value="en" selected>English</option>
+                                <option value="np">Nepali</option>
+                                <option value="hi">Hindi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="audioSpeed" class="form-label">
+                            <span data-en="Speed:" data-np="गति:">Speed:</span>
+                        </label>
+                        <input type="range" class="form-range" id="audioSpeed" min="0.5" max="2" step="0.1" value="1">
+                        <div class="d-flex justify-content-between">
+                            <small>Slow</small>
+                            <small id="audioSpeedValue">Normal</small>
+                            <small>Fast</small>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-purple" onclick="startAudioGeneration()">
+                            <i class="fas fa-magic me-2"></i>
+                            <span data-en="Generate Audio" data-np="अडियो सिर्जना गर्नुहोस्">Generate Audio</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Media Results Modal -->
+    <div class="modal fade" id="aiMediaResultsModal" tabindex="-1" aria-labelledby="aiMediaResultsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="aiMediaResultsModalLabel">
+                        <i class="fas fa-check-circle me-2"></i>
+                        <span data-en="AI Media Generated!" data-np="एआई मिडिया सिर्जना भयो!">AI Media Generated!</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="aiMediaContent">
+                        <!-- Generated content will be displayed here -->
+                    </div>
+                    <div class="mt-3">
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-primary" onclick="downloadAIMedia()">
+                                <i class="fas fa-download me-2"></i>
+                                <span data-en="Download" data-np="डाउनलोड">Download</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-success" onclick="shareAIMedia()">
+                                <i class="fas fa-share me-2"></i>
+                                <span data-en="Share" data-np="साझा गर्नुहोस्">Share</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-warning" onclick="regenerateAIMedia()">
+                                <i class="fas fa-redo me-2"></i>
+                                <span data-en="Regenerate" data-np="पुनः सिर्जना गर्नुहोस्">Regenerate</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assistant Section -->
+    <section id="aiAssistant" class="section">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center mb-5">
+                            <h2 class="fw-bold">
+                                <i class="fas fa-robot me-2"></i>
+                                <span data-en="AI Study Assistant" data-np="एआई अध्ययन सहायक">AI Study Assistant</span>
+                            </h2>
+                            <p class="lead text-muted">
+                                <span data-en="Get instant help with your studies, homework, and educational questions" 
+                                      data-np="आफ्नो अध्ययन, गृहकार्य र शैक्षिक प्रश्नहरूमा तत्काल सहायता प्राप्त गर्नुहोस्">
+                                    Get instant help with your studies, homework, and educational questions
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- AI Chat Interface -->
+                    <div class="col-lg-8">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-comments me-2"></i>
+                                    <span data-en="Chat with AI Assistant" data-np="एआई सहायकसँग च्याट गर्नुहोस्">Chat with AI Assistant</span>
+                                </h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="ai-chat-container" id="aiChatContainer">
+                                    <div class="ai-chat-messages" id="aiChatMessages">
+                                        <div class="ai-message ai-assistant">
+                                            <div class="ai-avatar">
+                                                <i class="fas fa-robot"></i>
+                                            </div>
+                                            <div class="ai-message-content">
+                                                <div class="ai-message-text">
+                                                    <span data-en="Hello! I'm your AI study assistant. I can help you with:" data-np="नमस्ते! म तपाईंको एआई अध्ययन सहायक हुँ। म तपाईंलाई यसमा सहायता गर्न सक्छु:">
+                                                        Hello! I'm your AI study assistant. I can help you with:
+                                                    </span>
+                                                    <ul class="mt-2">
+                                                        <li><span data-en="Homework help and explanations" data-np="गृहकार्य सहायता र व्याख्याहरू">Homework help and explanations</span></li>
+                                                        <li><span data-en="Math problem solving" data-np="गणित समस्या समाधान">Math problem solving</span></li>
+                                                        <li><span data-en="Science concepts" data-np="विज्ञान अवधारणाहरू">Science concepts</span></li>
+                                                        <li><span data-en="Language learning" data-np="भाषा सिक्ने">Language learning</span></li>
+                                                        <li><span data-en="Study tips and strategies" data-np="अध्ययन सुझावहरू र रणनीतिहरू">Study tips and strategies</span></li>
+                                                    </ul>
+                                                    <span data-en="What would you like help with today?" data-np="आज तपाईं कसरी सहायता चाहनुहुन्छ?">What would you like help with today?</span>
+                                                </div>
+                                                <div class="ai-message-time">
+                                                    <small class="text-muted">Just now</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ai-chat-input">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="aiChatInput" 
+                                                   placeholder="Type your question here..." 
+                                                   data-en-placeholder="Type your question here..." 
+                                                   data-np-placeholder="आफ्नो प्रश्न यहाँ टाइप गर्नुहोस्...">
+                                            <button class="btn btn-primary" type="button" onclick="sendAIMessage()">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Features Sidebar -->
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <!-- Quick Actions -->
+                            <div class="col-12 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-header bg-success text-white">
+                                        <h6 class="mb-0">
+                                            <i class="fas fa-bolt me-2"></i>
+                                            <span data-en="Quick Actions" data-np="द्रुत कार्यहरू">Quick Actions</span>
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-outline-primary btn-sm" onclick="aiQuickAction('math')">
+                                                <i class="fas fa-calculator me-2"></i>
+                                                <span data-en="Math Help" data-np="गणित सहायता">Math Help</span>
+                                            </button>
+                                            <button class="btn btn-outline-success btn-sm" onclick="aiQuickAction('science')">
+                                                <i class="fas fa-flask me-2"></i>
+                                                <span data-en="Science Help" data-np="विज्ञान सहायता">Science Help</span>
+                                            </button>
+                                            <button class="btn btn-outline-info btn-sm" onclick="aiQuickAction('english')">
+                                                <i class="fas fa-language me-2"></i>
+                                                <span data-en="English Help" data-np="अंग्रेजी सहायता">English Help</span>
+                                            </button>
+                                            <button class="btn btn-outline-warning btn-sm" onclick="aiQuickAction('nepali')">
+                                                <i class="fas fa-book me-2"></i>
+                                                <span data-en="Nepali Help" data-np="नेपाली सहायता">Nepali Help</span>
+                                            </button>
+                                            <button class="btn btn-outline-secondary btn-sm" onclick="aiQuickAction('study_tips')">
+                                                <i class="fas fa-lightbulb me-2"></i>
+                                                <span data-en="Study Tips" data-np="अध्ययन सुझावहरू">Study Tips</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Statistics -->
+                            <div class="col-12 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-header bg-info text-white">
+                                        <h6 class="mb-0">
+                                            <i class="fas fa-chart-bar me-2"></i>
+                                            <span data-en="AI Stats" data-np="एआई तथ्यांक">AI Stats</span>
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <div class="ai-stat">
+                                                    <h4 class="text-primary mb-0" id="aiQuestionsAnswered">0</h4>
+                                                    <small class="text-muted">
+                                                        <span data-en="Questions" data-np="प्रश्नहरू">Questions</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="ai-stat">
+                                                    <h4 class="text-success mb-0" id="aiAccuracy">98%</h4>
+                                                    <small class="text-muted">
+                                                        <span data-en="Accuracy" data-np="सटिकता">Accuracy</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Media Generation -->
+                            <div class="col-12 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-header bg-purple text-white">
+                                        <h6 class="mb-0">
+                                            <i class="fas fa-magic me-2"></i>
+                                            <span data-en="AI Media Generation" data-np="एआई मिडिया सिर्जना">AI Media Generation</span>
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-outline-purple btn-sm" onclick="generateAIVideo()">
+                                                <i class="fas fa-video me-2"></i>
+                                                <span data-en="Text to Video" data-np="पाठबाट भिडियो">Text to Video</span>
+                                            </button>
+                                            <button class="btn btn-outline-purple btn-sm" onclick="generateAIAudio()">
+                                                <i class="fas fa-volume-up me-2"></i>
+                                                <span data-en="Text to Audio" data-np="पाठबाट अडियो">Text to Audio</span>
+                                            </button>
+                                            <button class="btn btn-outline-purple btn-sm" onclick="generateAIImage()">
+                                                <i class="fas fa-image me-2"></i>
+                                                <span data-en="Text to Image" data-np="पाठबाट तस्विर">Text to Image</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Topics -->
+                            <div class="col-12">
+                                <div class="card shadow-sm">
+                                    <div class="card-header bg-warning text-dark">
+                                        <h6 class="mb-0">
+                                            <i class="fas fa-history me-2"></i>
+                                            <span data-en="Recent Topics" data-np="हालका विषयहरू">Recent Topics</span>
+                                        </h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="ai-recent-topics" id="aiRecentTopics">
+                                            <div class="ai-topic-item">
+                                                <i class="fas fa-calculator text-primary me-2"></i>
+                                                <span data-en="Algebra equations" data-np="बीजगणित समीकरणहरू">Algebra equations</span>
+                                            </div>
+                                            <div class="ai-topic-item">
+                                                <i class="fas fa-flask text-success me-2"></i>
+                                                <span data-en="Chemical reactions" data-np="रासायनिक प्रतिक्रियाहरू">Chemical reactions</span>
+                                            </div>
+                                            <div class="ai-topic-item">
+                                                <i class="fas fa-language text-info me-2"></i>
+                                                <span data-en="Grammar rules" data-np="व्याकरण नियमहरू">Grammar rules</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="calculator" class="section">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="calculator-container">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2 class="mb-0">
+                                    <i class="fas fa-calculator me-2"></i>
+                                    <span data-en="Advanced Calculator" data-np="उन्नत क्यालकुलेटर">Advanced Calculator</span>
+                                </h2>
+                                <div class="calculator-mode-switch">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="toggleCalculatorMode()">
+                                        <i class="fas fa-cog me-1"></i>
+                                        <span data-en="Scientific" data-np="वैज्ञानिक">Scientific</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Calculator History -->
+                            <div class="calculator-history" id="calculatorHistory"></div>
+                            
+                            <!-- Main Display -->
+                            <div class="calculator-display" id="calculatorDisplay">0</div>
+                            
+                            <!-- Scientific Functions (initially hidden) -->
+                            <div class="scientific-functions" id="scientificFunctions" style="display: none;">
+                                <div class="row g-2 mb-3">
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('sin')">sin</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('cos')">cos</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('tan')">tan</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('log')">log</button>
+                                    </div>
+                                </div>
+                                <div class="row g-2 mb-3">
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('asin')">sin⁻¹</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('acos')">cos⁻¹</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('atan')">tan⁻¹</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('ln')">ln</button>
+                                    </div>
+                                </div>
+                                <div class="row g-2 mb-3">
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('sqrt')">√</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('pow')">x²</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('cube')">x³</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn calculator-btn scientific" onclick="scientificFunction('factorial')">x!</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Calculator Number Toggle -->
+                            <div class="calculator-number-toggle mb-3">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary active" onclick="toggleNumberSystem('english')">
+                                        <span data-en="English" data-np="अंग्रेजी">English</span>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="toggleNumberSystem('nepali')">
+                                        <span data-en="Nepali" data-np="नेपाली">नेपाली</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Main Calculator Buttons -->
+                            <div class="text-center">
+                                <div class="calculator-buttons">
+                                    <!-- Row 1 -->
+                                    <button class="btn calculator-btn function" onclick="calculatorFunction('clear')">C</button>
+                                    <button class="btn calculator-btn function" onclick="calculatorFunction('backspace')">⌫</button>
+                                    <button class="btn calculator-btn function" onclick="calculatorFunction('percent')">%</button>
+                                    <button class="btn calculator-btn operator" onclick="calculatorInput('+')">+</button>
+                                    
+                                    <!-- Row 2 -->
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('7')">
+                                        <span class="english-number">7</span>
+                                        <span class="nepali-number">७</span>
+                                    </button>
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('8')">
+                                        <span class="english-number">8</span>
+                                        <span class="nepali-number">८</span>
+                                    </button>
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('9')">
+                                        <span class="english-number">9</span>
+                                        <span class="nepali-number">९</span>
+                                    </button>
+                                    <button class="btn calculator-btn operator" onclick="calculatorInput('-')">-</button>
+                                    
+                                    <!-- Row 3 -->
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('4')">
+                                        <span class="english-number">4</span>
+                                        <span class="nepali-number">४</span>
+                                    </button>
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('5')">
+                                        <span class="english-number">5</span>
+                                        <span class="nepali-number">५</span>
+                                    </button>
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('6')">
+                                        <span class="english-number">6</span>
+                                        <span class="nepali-number">६</span>
+                                    </button>
+                                    <button class="btn calculator-btn operator" onclick="calculatorInput('*')">×</button>
+                                    
+                                    <!-- Row 4 -->
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('1')">
+                                        <span class="english-number">1</span>
+                                        <span class="nepali-number">१</span>
+                                    </button>
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('2')">
+                                        <span class="english-number">2</span>
+                                        <span class="nepali-number">२</span>
+                                    </button>
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('3')">
+                                        <span class="english-number">3</span>
+                                        <span class="nepali-number">३</span>
+                                    </button>
+                                    <button class="btn calculator-btn operator" onclick="calculatorInput('/')">÷</button>
+                                    
+                                    <!-- Row 5 -->
+                                    <button class="btn calculator-btn number-btn" onclick="calculatorInput('0')">
+                                        <span class="english-number">0</span>
+                                        <span class="nepali-number">०</span>
+                                    </button>
+                                    <button class="btn calculator-btn" onclick="calculatorInput('.')">.</button>
+                                    <button class="btn calculator-btn function" onclick="calculatorFunction('plusMinus')">±</button>
+                                    <button class="btn calculator-btn equals" onclick="calculate()">=</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Memory Functions -->
+                            <div class="memory-functions mt-3">
+                                <div class="row g-2">
+                                    <div class="col-3">
+                                        <button class="btn btn-sm btn-outline-secondary" onclick="memoryFunction('mc')">MC</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-sm btn-outline-secondary" onclick="memoryFunction('mr')">MR</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-sm btn-outline-secondary" onclick="memoryFunction('m+')">M+</button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-sm btn-outline-secondary" onclick="memoryFunction('m-')">M-</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Section -->
+        <section id="service" class="section">
+            <div class="container py-5">
+                <div class="row text-center mb-5">
+                    <div class="col-12">
+                        <h2 class="fw-bold">
+                            <span data-en="Our Services" data-np="हाम्रो सेवाहरू">Our Services</span>
+                        </h2>
+                        <p class="lead text-muted">
+                            <span data-en="Comprehensive educational services for students" 
+                                  data-np="विद्यार्थीहरूको लागि व्यापक शैक्षिक सेवाहरू">
+                                Comprehensive educational services for students
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 text-center p-4">
+                            <div class="card-body">
+                                <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">
+                                    <span data-en="Study Materials" data-np="अध्ययन सामग्री">Study Materials</span>
+                                </h5>
+                                <p class="card-text">
+                                    <span data-en="Access comprehensive study materials for all subjects" 
+                                          data-np="सबै विषयहरूको लागि व्यापक अध्ययन सामग्री">
+                                        Access comprehensive study materials for all subjects
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card h-100 text-center p-4">
+                            <div class="card-body">
+                                <i class="fas fa-video fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">
+                                    <span data-en="Video Lessons" data-np="भिडियो पाठहरू">Video Lessons</span>
+                                </h5>
+                                <p class="card-text">
+                                    <span data-en="Watch educational videos and tutorials" 
+                                          data-np="शैक्षिक भिडियो र ट्युटोरियलहरू हेर्नुहोस्">
+                                        Watch educational videos and tutorials
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card h-100 text-center p-4">
+                            <div class="card-body">
+                                <i class="fas fa-file-pdf fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">
+                                    <span data-en="PDF Resources" data-np="PDF स्रोतहरू">PDF Resources</span>
+                                </h5>
+                                <p class="card-text">
+                                    <span data-en="Download PDF documents and study guides" 
+                                          data-np="PDF कागजातहरू र अध्ययन गाइडहरू डाउनलोड गर्नुहोस्">
+                                        Download PDF documents and study guides
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Chat Section -->
+        <section id="videoChat" class="section">
+            <div class="container py-5">
+                <!-- Header -->
+                <div class="row mb-5">
+                    <div class="col-12 text-center">
+                        <h2 class="fw-bold mb-3">
+                            <i class="fas fa-video me-3"></i>
+                            <span data-en="Mero Video Chat" data-np="मेरो भिडियो च्याट">Mero Video Chat</span>
+                        </h2>
+                        <p class="lead text-muted">
+                            <span data-en="Connect with teachers and classmates through high-quality video chat" 
+                                  data-np="उच्च गुणस्तरको भिडियो च्याट मार्फत शिक्षक र सहपाठीहरूसँग जडान गर्नुहोस्">
+                                Connect with teachers and classmates through high-quality video chat
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Video Chat Interface -->
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Main Video Area -->
+                        <div class="video-chat-container">
+                            <div class="main-video-area">
+                                <video id="mainVideo" autoplay muted playsinline class="main-video"></video>
+                                <div class="video-overlay" id="videoOverlay">
+                                    <div class="text-center">
+                                        <i class="fas fa-video fa-3x text-white mb-3"></i>
+                                        <h4 class="text-white">
+                                            <span data-en="Click 'Start Video' to begin" data-np="सुरु गर्न 'भिडियो सुरु गर्नुहोस्' क्लिक गर्नुहोस्">Click 'Start Video' to begin</span>
+                                        </h4>
+                                    </div>
+                                </div>
+                                
+                                <!-- Screen Share Overlay -->
+                                <div class="screen-share-overlay" id="screenShareOverlay" style="display: none;">
+                                    <div class="screen-share-header">
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-desktop me-2"></i>
+                                            <span data-en="Screen Sharing" data-np="स्क्रिन शेयरिङ">Screen Sharing</span>
+                                        </span>
+                                    </div>
+                                    <div class="screen-share-content" id="screenShareContent">
+                                        <!-- Screen share content will be displayed here -->
+                                    </div>
+                                </div>
+                                
+                                <!-- Whiteboard Overlay -->
+                                <div class="whiteboard-overlay" id="whiteboardOverlay" style="display: none;">
+                                    <div class="whiteboard-header">
+                                        <div class="whiteboard-tools">
+                                            <button class="btn btn-sm btn-outline-light" onclick="setTool('pen')" id="penTool">
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-light" onclick="setTool('eraser')" id="eraserTool">
+                                                <i class="fas fa-eraser"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-light" onclick="setTool('text')" id="textTool">
+                                                <i class="fas fa-font"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-light" onclick="setTool('shape')" id="shapeTool">
+                                                <i class="fas fa-square"></i>
+                                            </button>
+                                            <input type="color" id="colorPicker" class="form-control form-control-sm" value="#000000">
+                                            <input type="range" id="brushSize" class="form-range" min="1" max="20" value="3">
+                                            <button class="btn btn-sm btn-danger" onclick="clearWhiteboard()">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                        <span class="badge bg-primary">
+                                            <i class="fas fa-chalkboard me-2"></i>
+                                            <span data-en="Interactive Whiteboard" data-np="इन्टरएक्टिभ वाइटबोर्ड">Interactive Whiteboard</span>
+                                        </span>
+                                    </div>
+                                    <canvas id="whiteboardCanvas" class="whiteboard-canvas"></canvas>
+                                </div>
+                            </div>
+                            
+                            <!-- Video Controls -->
+                            <div class="video-controls">
+                                <div class="row g-2">
+                                    <div class="col-3">
+                                        <button class="btn btn-primary w-100" id="startVideoBtn" onclick="toggleVideo()">
+                                            <i class="fas fa-video me-2"></i>
+                                            <span data-en="Start Video" data-np="भिडियो सुरु गर्नुहोस्">Start Video</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-success w-100" id="startAudioBtn" onclick="toggleAudio()">
+                                            <i class="fas fa-microphone me-2"></i>
+                                            <span data-en="Start Audio" data-np="अडियो सुरु गर्नुहोस्">Start Audio</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-info w-100" id="screenShareBtn" onclick="toggleScreenShare()">
+                                            <i class="fas fa-desktop me-2"></i>
+                                            <span data-en="Share Screen" data-np="स्क्रिन शेयर गर्नुहोस्">Share Screen</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-danger w-100" onclick="endCall()">
+                                            <i class="fas fa-phone-slash me-2"></i>
+                                            <span data-en="End Call" data-np="कल समाप्त गर्नुहोस्">End Call</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Additional Controls -->
+                                <div class="row g-2 mt-2">
+                                    <div class="col-3">
+                                        <button class="btn btn-warning w-100" id="whiteboardBtn" onclick="toggleWhiteboard()">
+                                            <i class="fas fa-chalkboard me-2"></i>
+                                            <span data-en="Whiteboard" data-np="वाइटबोर्ड">Whiteboard</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-secondary w-100" onclick="showSlides()">
+                                            <i class="fas fa-presentation me-2"></i>
+                                            <span data-en="Slides" data-np="स्लाइडहरू">Slides</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-dark w-100" onclick="showHomework()">
+                                            <i class="fas fa-book me-2"></i>
+                                            <span data-en="Homework" data-np="गृहकार्य">Homework</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-outline-primary w-100" onclick="showAnimations()">
+                                            <i class="fas fa-magic me-2"></i>
+                                            <span data-en="Animations" data-np="एनिमेसनहरू">Animations</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <!-- Chat Panel -->
+                        <div class="chat-panel">
+                            <div class="chat-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-comments me-2"></i>
+                                    <span data-en="Chat" data-np="च्याट">Chat</span>
+                                </h5>
+                            </div>
+                            <div class="chat-messages" id="chatMessages">
+                                <!-- Messages will be added here -->
+                            </div>
+                            <div class="chat-input">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="chatInput" placeholder="Type your message..." 
+                                           data-en-placeholder="Type your message..." data-np-placeholder="आफ्नो सन्देश टाइप गर्नुहोस्...">
+                                    <button class="btn btn-primary" onclick="sendMessage()">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Participants List -->
+                        <div class="participants-panel mt-3">
+                            <div class="participants-header">
+                                <h6 class="mb-0">
+                                    <i class="fas fa-users me-2"></i>
+                                    <span data-en="Participants" data-np="सहभागीहरू">Participants</span>
+                                    <span class="badge bg-primary ms-2" id="participantCount">0</span>
+                                </h6>
+                            </div>
+                            <div class="participants-list" id="participantsList">
+                                <!-- Participants will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room Management -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="fas fa-door-open me-2"></i>
+                                    <span data-en="Room Management" data-np="कोठा व्यवस्थापन">Room Management</span>
+                                </h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="roomId" class="form-label">
+                                            <span data-en="Room ID" data-np="कोठा आईडी">Room ID</span>
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="roomId" placeholder="Enter room ID" 
+                                                   data-en-placeholder="Enter room ID" data-np-placeholder="कोठा आईडी प्रविष्ट गर्नुहोस्">
+                                            <button class="btn btn-outline-primary" onclick="joinRoom()">
+                                                <i class="fas fa-sign-in-alt me-2"></i>
+                                                <span data-en="Join" data-np="सामेल हुनुहोस्">Join</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="createRoom" class="form-label">
+                                            <span data-en="Create New Room" data-np="नयाँ कोठा सिर्जना गर्नुहोस्">Create New Room</span>
+                                        </label>
+                                        <button class="btn btn-success w-100" onclick="createRoom()">
+                                            <i class="fas fa-plus me-2"></i>
+                                            <span data-en="Create Room" data-np="कोठा सिर्जना गर्नुहोस्">Create Room</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-graduation-cap me-2"></i><span data-en="Mero School" data-np="मेरो स्कूल">Mero School</span></h5>
+                    <p class="mb-0">
+                        <span data-en="Start your educational journey here" data-np="आफ्नो शिक्षा यात्रा यहाँ सुरु गर्नुहोस्">Start your educational journey here</span>
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">
+                        <i class="fas fa-envelope me-2"></i>
+                        <span data-en="Contact" data-np="सम्पर्क">Contact</span>: info@meroschool.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Study Material Modal -->
+    <div class="modal fade" id="studyMaterialModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-book me-2"></i>
+                        <span data-en="Add Study Material" data-np="अध्ययन सामग्री थप्नुहोस्">Add Study Material</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="studyMaterialForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="materialTitle" class="form-label">
+                                <span data-en="Title" data-np="शीर्षक">Title</span>
+                            </label>
+                            <input type="text" class="form-control" id="materialTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="materialDescription" class="form-label">
+                                <span data-en="Description" data-np="विवरण">Description</span>
+                            </label>
+                            <textarea class="form-control" id="materialDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="materialType" class="form-label">
+                                <span data-en="Type" data-np="प्रकार">Type</span>
+                            </label>
+                            <select class="form-select" id="materialType" required>
+                                <option value=""><span data-en="Select Type" data-np="प्रकार छान्नुहोस्">Select Type</span></option>
+                                <option value="lesson"><span data-en="Lesson" data-np="पाठ">Lesson</span></option>
+                                <option value="exercise"><span data-en="Exercise" data-np="अभ्यास">Exercise</span></option>
+                                <option value="quiz"><span data-en="Quiz" data-np="प्रश्नोत्तरी">Quiz</span></option>
+                                <option value="note"><span data-en="Note" data-np="टिप्पणी">Note</span></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="materialFile" class="form-label">
+                                <span data-en="File (Optional)" data-np="फाइल (वैकल्पिक)">File (Optional)</span>
+                            </label>
+                            <input type="file" class="form-control" id="materialFile">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <span data-en="Cancel" data-np="रद्द गर्नुहोस्">Cancel</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>
+                            <span data-en="Add Material" data-np="सामग्री थप्नुहोस्">Add Material</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Homework Modal -->
+    <div class="modal fade" id="homeworkModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-tasks me-2"></i>
+                        <span data-en="Add Homework" data-np="गृहकार्य थप्नुहोस्">Add Homework</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="homeworkForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="homeworkTitle" class="form-label">
+                                <span data-en="Title" data-np="शीर्षक">Title</span>
+                            </label>
+                            <input type="text" class="form-control" id="homeworkTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="homeworkDescription" class="form-label">
+                                <span data-en="Description" data-np="विवरण">Description</span>
+                            </label>
+                            <textarea class="form-control" id="homeworkDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="homeworkDueDate" class="form-label">
+                                        <span data-en="Due Date" data-np="समाप्ति मिति">Due Date</span>
+                                    </label>
+                                    <input type="date" class="form-control" id="homeworkDueDate" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="homeworkPriority" class="form-label">
+                                        <span data-en="Priority" data-np="प्राथमिकता">Priority</span>
+                                    </label>
+                                    <select class="form-select" id="homeworkPriority" required>
+                                        <option value="low"><span data-en="Low" data-np="कम">Low</span></option>
+                                        <option value="medium" selected><span data-en="Medium" data-np="मध्यम">Medium</span></option>
+                                        <option value="high"><span data-en="High" data-np="उच्च">High</span></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="homeworkFile" class="form-label">
+                                <span data-en="Attachment (Optional)" data-np="संलग्नक (वैकल्पिक)">Attachment (Optional)</span>
+                            </label>
+                            <input type="file" class="form-control" id="homeworkFile">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <span data-en="Cancel" data-np="रद्द गर्नुहोस्">Cancel</span>
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-plus me-2"></i>
+                            <span data-en="Add Homework" data-np="गृहकार्य थप्नुहोस्">Add Homework</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slides Modal -->
+    <div class="modal fade" id="slidesModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-presentation me-2"></i>
+                        <span data-en="Presentation Slides" data-np="प्रेजेन्टेसन स्लाइडहरू">Presentation Slides</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="slides-container">
+                        <div class="slides-navigation">
+                            <button class="btn btn-outline-primary" onclick="previousSlide()">
+                                <i class="fas fa-chevron-left"></i>
+                                <span data-en="Previous" data-np="अघिल्लो">Previous</span>
+                            </button>
+                            <span class="slide-counter">
+                                <span data-en="Slide" data-np="स्लाइड">Slide</span> <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+                            </span>
+                            <button class="btn btn-outline-primary" onclick="nextSlide()">
+                                <span data-en="Next" data-np="अर्को">Next</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="slide-content" id="slideContent">
+                            <!-- Slide content will be loaded here -->
+                        </div>
+                        <div class="slides-thumbnails" id="slidesThumbnails">
+                            <!-- Slide thumbnails will be generated here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <span data-en="Close" data-np="बन्द गर्नुहोस्">Close</span>
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="shareSlide()">
+                        <i class="fas fa-share me-2"></i>
+                        <span data-en="Share Slide" data-np="स्लाइड शेयर गर्नुहोस्">Share Slide</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Homework Display Modal -->
+    <div class="modal fade" id="homeworkModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-book me-2"></i>
+                        <span data-en="Student Homework" data-np="विद्यार्थी गृहकार्य">Student Homework</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="homework-display">
+                        <div class="homework-filters mb-3">
+                            <select class="form-select" id="homeworkFilter">
+                                <option value="all">
+                                    <span data-en="All Students" data-np="सबै विद्यार्थीहरू">All Students</span>
+                                </option>
+                                <option value="pending">
+                                    <span data-en="Pending" data-np="पेन्डिङ">Pending</span>
+                                </option>
+                                <option value="completed">
+                                    <span data-en="Completed" data-np="पूरा भएको">Completed</span>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="homework-list" id="homeworkList">
+                            <!-- Homework items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <span data-en="Close" data-np="बन्द गर्नुहोस्">Close</span>
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="gradeHomework()">
+                        <i class="fas fa-star me-2"></i>
+                        <span data-en="Grade Homework" data-np="गृहकार्य मूल्याङ्कन गर्नुहोस्">Grade Homework</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animations Modal -->
+    <div class="modal fade" id="animationsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-magic me-2"></i>
+                        <span data-en="Educational Animations" data-np="शैक्षिक एनिमेसनहरू">Educational Animations</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="animations-container">
+                        <div class="animation-categories mb-3">
+                            <button class="btn btn-outline-primary active" onclick="showAnimationCategory('math')">
+                                <i class="fas fa-calculator me-2"></i>
+                                <span data-en="Math" data-np="गणित">Math</span>
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="showAnimationCategory('science')">
+                                <i class="fas fa-atom me-2"></i>
+                                <span data-en="Science" data-np="विज्ञान">Science</span>
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="showAnimationCategory('english')">
+                                <i class="fas fa-language me-2"></i>
+                                <span data-en="English" data-np="अंग्रेजी">English</span>
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="showAnimationCategory('nepali')">
+                                <i class="fas fa-book me-2"></i>
+                                <span data-en="Nepali" data-np="नेपाली">Nepali</span>
+                            </button>
+                        </div>
+                        <div class="animation-player" id="animationPlayer">
+                            <!-- Animation content will be displayed here -->
+                        </div>
+                        <div class="animation-controls">
+                            <button class="btn btn-primary" onclick="playAnimation()">
+                                <i class="fas fa-play me-2"></i>
+                                <span data-en="Play" data-np="चलाउनुहोस्">Play</span>
+                            </button>
+                            <button class="btn btn-secondary" onclick="pauseAnimation()">
+                                <i class="fas fa-pause me-2"></i>
+                                <span data-en="Pause" data-np="रोक्नुहोस्">Pause</span>
+                            </button>
+                            <button class="btn btn-info" onclick="resetAnimation()">
+                                <i class="fas fa-redo me-2"></i>
+                                <span data-en="Reset" data-np="रीसेट">Reset</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <span data-en="Close" data-np="बन्द गर्नुहोस्">Close</span>
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="shareAnimation()">
+                        <i class="fas fa-share me-2"></i>
+                        <span data-en="Share Animation" data-np="एनिमेसन शेयर गर्नुहोस्">Share Animation</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
